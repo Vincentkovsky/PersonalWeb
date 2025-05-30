@@ -17,6 +17,22 @@
     <!-- Favicon - 使用相对路径 -->
     <link rel="icon" type="image/svg+xml" href="./assets/favicon-Crb2pmdD.svg" />
 
+    <!-- Non-React fallback styles -->
+    <style>
+      .fallback-debug {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: red;
+        color: white;
+        padding: 10px;
+        font-family: sans-serif;
+        z-index: 99999;
+        text-align: center;
+      }
+    </style>
+
     <!-- GitHub Pages SPA routing script - 改进版本 -->
     <script type="text/javascript">
       // 检测当前环境并设置适当的base
@@ -53,10 +69,15 @@
         }
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-DFfo6c2K.js"></script>
+    <script type="module" crossorigin src="./assets/index-qvqOkp8j.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-Bt7j8WPC.css">
   </head>
   <body>
+    <!-- Non-React fallback content -->
+    <div class="fallback-debug">
+      FALLBACK DEBUG: This element should be visible even if React fails
+    </div>
+
     <div id="root"></div>
   </body>
 </html>
