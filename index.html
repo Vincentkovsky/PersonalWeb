@@ -17,9 +17,6 @@
     <!-- Favicon - 使用相对路径 -->
     <link rel="icon" type="image/svg+xml" href="./assets/favicon-Crb2pmdD.svg" />
 
-    <!-- 在文档的<head>中添加base标签，确保相对URL都基于此 -->
-    <base href="" />
-
     <!-- GitHub Pages SPA routing script - 改进版本 -->
     <script type="text/javascript">
       // 检测当前环境并设置适当的base
@@ -34,9 +31,9 @@
 
         // 如果在GitHub Pages上，设置base href
         if (isGitHubPages) {
-          document.querySelector("base").setAttribute("href", `/${repoName}/`);
+          document.write('<base href="/' + repoName + '/" />');
         } else {
-          document.querySelector("base").setAttribute("href", "/");
+          document.write('<base href="/" />');
         }
 
         // 原有的SPA路由脚本
