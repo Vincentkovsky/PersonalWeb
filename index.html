@@ -2,410 +2,137 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <title>Vincent Jin - Software Developer & Engineer</title>
     <meta
       name="description"
-      content="Portfolio of Vincent Jin, a passionate software developer specializing in React, Node.js, and modern web technologies."
+      content="Portfolio of Vincent Jin, a passionate software developer specializing in React, Node.js, and modern web technologies. Explore my projects and experience in building innovative applications."
     />
+    <meta property="og:title" content="Vincent Jin - Software Developer & Engineer" />
+    <meta
+      property="og:description"
+      content="Portfolio showcasing innovative projects and expertise in modern web development technologies."
+    />
+    <meta property="og:type" content="website" />
+    <!-- Favicon - 使用相对路径 -->
+    <link rel="icon" type="image/svg+xml" href="/PersonalWeb/assets/favicon-Crb2pmdD.svg" />
+
+    <!-- 基础样式 - 确保即使Tailwind未加载也能显示内容 -->
     <style>
+      /* 重要颜色变量定义 */
       :root {
         --bg-color: #0f172a;
         --text-color: #e2e8f0;
         --primary-color: #3b82f6;
         --secondary-color: #1e293b;
         --accent-color: #10b981;
-        --header-height: 80px;
+
+        /* Tailwind变量备份 */
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+        --card: 217.2 32.6% 17.5%;
+        --card-foreground: 210 40% 98%;
+        --popover: 222.2 84% 4.9%;
+        --popover-foreground: 210 40% 98%;
+        --primary: 217.2 91.2% 59.8%;
+        --primary-foreground: 222.2 47.4% 11.2%;
+        --secondary: 217.2 32.6% 17.5%;
+        --secondary-foreground: 210 40% 98%;
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+        --accent: 217.2 32.6% 17.5%;
+        --accent-foreground: 210 40% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
+        --ring: 212.7 26.8% 83.9%;
+        --radius: 0.5rem;
       }
 
-      * {
+      /* 强制基础样式 */
+      body {
+        background-color: var(--bg-color) !important;
+        color: var(--text-color) !important;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
       }
 
-      body {
-        font-family: "Arial", sans-serif;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        line-height: 1.6;
+      /* 避免白色背景 */
+      .bg-background {
+        background-color: var(--bg-color) !important;
       }
 
-      .container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
+      /* 确保文本可见 */
+      .text-foreground {
+        color: var(--text-color) !important;
       }
 
-      /* Header & Navigation */
-      header {
+      .text-primary {
+        color: var(--primary-color) !important;
+      }
+
+      /* 隐藏调试信息 - 部署后可移除 */
+      .debug-banner {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
-        height: var(--header-height);
-        background-color: rgba(15, 23, 42, 0.9);
-        backdrop-filter: blur(10px);
-        z-index: 100;
-        border-bottom: 1px solid #2d3748;
-      }
-
-      nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 100%;
-      }
-
-      .logo {
-        font-size: 1.5rem;
-        font-weight: 700;
-      }
-
-      .logo span {
-        color: var(--primary-color);
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 2rem;
-      }
-
-      .nav-links a {
-        color: var(--text-color);
-        text-decoration: none;
-        transition: color 0.3s;
-      }
-
-      .nav-links a:hover {
-        color: var(--primary-color);
-      }
-
-      /* Hero Section */
-      .hero {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        padding-top: var(--header-height);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .hero-content {
+        background-color: #ff5722;
+        color: white;
         text-align: center;
-        z-index: 1;
-      }
-
-      .profile-img {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid var(--primary-color);
-        margin-bottom: 2rem;
-      }
-
-      .hero h1 {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-      }
-
-      .hero h1 span {
-        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .hero p {
-        font-size: 1.2rem;
-        max-width: 600px;
-        margin: 0 auto 2rem;
-        color: #94a3b8;
-      }
-
-      /* Sections */
-      section {
-        padding: 5rem 0;
-      }
-
-      .section-title {
-        text-align: center;
-        margin-bottom: 3rem;
-      }
-
-      .section-title h2 {
-        font-size: 2.5rem;
-        display: inline-block;
-        position: relative;
-      }
-
-      .section-title h2::after {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 50px;
-        height: 3px;
-        background: var(--primary-color);
-      }
-
-      /* Skills */
-      .skills-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 2rem;
-      }
-
-      .skill-card {
-        background-color: var(--secondary-color);
-        border-radius: 8px;
-        padding: 2rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-
-      .skill-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      }
-
-      .skill-card h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        color: var(--primary-color);
-      }
-
-      /* Projects */
-      .projects-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-        gap: 2rem;
-      }
-
-      .project-card {
-        background-color: var(--secondary-color);
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-
-      .project-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      }
-
-      .project-content {
-        padding: 1.5rem;
-      }
-
-      .project-content h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-      }
-
-      /* Contact */
-      .contact-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-      }
-
-      .contact-info {
-        background-color: var(--secondary-color);
-        border-radius: 8px;
-        padding: 2rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      /* Social Icons */
-      .social-icons {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        margin-top: 2rem;
-      }
-
-      .social-icons a {
-        color: var(--text-color);
-        font-size: 1.5rem;
-        transition: color 0.3s, transform 0.3s;
-      }
-
-      .social-icons a:hover {
-        color: var(--primary-color);
-        transform: translateY(-3px);
-      }
-
-      /* Footer */
-      footer {
-        background-color: var(--secondary-color);
-        padding: 2rem 0;
-        text-align: center;
-        border-top: 1px solid #2d3748;
-      }
-
-      footer p {
-        color: #94a3b8;
-        font-size: 0.9rem;
-      }
-
-      /* Media Queries */
-      @media (max-width: 768px) {
-        .nav-links {
-          display: none;
-        }
-
-        .hero h1 {
-          font-size: 2.5rem;
-        }
-
-        .section-title h2 {
-          font-size: 2rem;
-        }
+        z-index: 9999;
+        font-family: sans-serif;
+        padding: 10px;
+        font-size: 14px;
+        display: none; /* 默认隐藏，需要时可设为block */
       }
     </style>
+
+    <!-- GitHub Pages SPA路由脚本 -->
+    <script type="text/javascript">
+      // 检测当前环境并设置适当的base
+      (function () {
+        // 检测是否在GitHub Pages
+        const isGitHubPages =
+          window.location.hostname.includes("github.io") ||
+          window.location.hostname.includes("vincentjin.dev");
+
+        // 设置仓库名
+        const repoName = "PersonalWeb";
+
+        // 如果在GitHub Pages上，设置base href
+        if (isGitHubPages) {
+          document.write('<base href="/' + repoName + '/" />');
+        } else {
+          document.write('<base href="/" />');
+        }
+
+        // 原有的SPA路由脚本
+        if (window.location.search[1] === "/") {
+          var decoded = window.location.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(
+            null,
+            null,
+            window.location.pathname.slice(0, -1) + decoded + window.location.hash
+          );
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/PersonalWeb/assets/index-DQhe6AYG.js"></script>
+    <link rel="stylesheet" crossorigin href="/PersonalWeb/assets/index-C4rYmkE6.css">
   </head>
   <body>
-    <header>
-      <div class="container">
-        <nav>
-          <div class="logo">Vincent<span>Jin</span></div>
-          <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-          </div>
-        </nav>
-      </div>
-    </header>
+    <!-- 调试信息 - 部署后可移除 -->
+    <div class="debug-banner">调试模式：React已加载</div>
 
-    <section id="about" class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <img
-            src="https://avatars.githubusercontent.com/u/115676707"
-            alt="Vincent Jin"
-            class="profile-img"
-          />
-          <h1>Vincent <span>Jin</span></h1>
-          <p>Software Developer & Engineer</p>
-          <p>
-            I'm a software developer passionate about building personal projects and exploring
-            emerging technologies. I thrive on experimenting with AI-driven solutions and using my
-            real-world experience with crypto, always seeking to bridge innovation with practical
-            applications.
-          </p>
-          <div class="social-icons">
-            <a href="#"><i>GitHub</i></a>
-            <a href="#"><i>LinkedIn</i></a>
-            <a href="#"><i>Email</i></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills">
-      <div class="container">
-        <div class="section-title">
-          <h2>My Skills</h2>
-        </div>
-        <div class="skills-container">
-          <div class="skill-card">
-            <h3>Frontend Development</h3>
-            <p>
-              Experienced with React, TypeScript, and modern CSS frameworks like Tailwind. I build
-              responsive, accessible and user-friendly interfaces.
-            </p>
-          </div>
-          <div class="skill-card">
-            <h3>Backend Development</h3>
-            <p>
-              Proficient in Node.js, Express, and database technologies including MongoDB and SQL. I
-              design scalable and robust API services.
-            </p>
-          </div>
-          <div class="skill-card">
-            <h3>AI & Machine Learning</h3>
-            <p>
-              Familiar with implementing AI solutions and integrating with large language models to
-              create intelligent applications.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <div class="container">
-        <div class="section-title">
-          <h2>Recent Projects</h2>
-        </div>
-        <div class="projects-container">
-          <div class="project-card">
-            <div class="project-content">
-              <h3>AI-Powered Content Assistant</h3>
-              <p>
-                A tool that uses machine learning to help creators generate and optimize content
-                across multiple platforms.
-              </p>
-              <p>Technologies: React, Node.js, OpenAI API</p>
-            </div>
-          </div>
-          <div class="project-card">
-            <div class="project-content">
-              <h3>Crypto Portfolio Tracker</h3>
-              <p>
-                A dashboard for monitoring cryptocurrency investments with real-time data
-                visualization and alerts.
-              </p>
-              <p>Technologies: TypeScript, Chart.js, Express</p>
-            </div>
-          </div>
-          <div class="project-card">
-            <div class="project-content">
-              <h3>Personal Web Portfolio</h3>
-              <p>
-                This responsive portfolio website showcasing my projects and skills, built with
-                modern web technologies.
-              </p>
-              <p>Technologies: React, Tailwind CSS, Vite</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="section-title">
-          <h2>Get In Touch</h2>
-        </div>
-        <div class="contact-container">
-          <div class="contact-info">
-            <h3>Contact Information</h3>
-            <p>Feel free to reach out to me for collaboration or opportunities.</p>
-            <p>Email: example@example.com</p>
-            <p>Location: San Francisco, CA</p>
-            <div class="social-icons">
-              <a href="#"><i>GitHub</i></a>
-              <a href="#"><i>LinkedIn</i></a>
-              <a href="#"><i>Twitter</i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="container">
-        <p>© 2025 Vincent Jin. All rights reserved.</p>
-        <p>Built with HTML, CSS, and JavaScript</p>
-      </div>
-    </footer>
+    <div id="root"></div>
   </body>
 </html>
