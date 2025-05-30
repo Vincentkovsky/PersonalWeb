@@ -15,82 +15,12 @@
     />
     <meta property="og:type" content="website" />
     <!-- Favicon - 使用相对路径 -->
-    <link rel="icon" type="image/svg+xml" href="/PersonalWeb/assets/favicon-Crb2pmdD.svg" />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon-Crb2pmdD.svg" />
 
-    <!-- 基础样式 - 确保即使Tailwind未加载也能显示内容 -->
-    <style>
-      /* 重要颜色变量定义 */
-      :root {
-        --bg-color: #0f172a;
-        --text-color: #e2e8f0;
-        --primary-color: #3b82f6;
-        --secondary-color: #1e293b;
-        --accent-color: #10b981;
+    <!-- 在文档的<head>中添加base标签，确保相对URL都基于此 -->
+    <base href="" />
 
-        /* Tailwind变量备份 */
-        --background: 222.2 84% 4.9%;
-        --foreground: 210 40% 98%;
-        --card: 217.2 32.6% 17.5%;
-        --card-foreground: 210 40% 98%;
-        --popover: 222.2 84% 4.9%;
-        --popover-foreground: 210 40% 98%;
-        --primary: 217.2 91.2% 59.8%;
-        --primary-foreground: 222.2 47.4% 11.2%;
-        --secondary: 217.2 32.6% 17.5%;
-        --secondary-foreground: 210 40% 98%;
-        --muted: 217.2 32.6% 17.5%;
-        --muted-foreground: 215 20.2% 65.1%;
-        --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 210 40% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 210 40% 98%;
-        --border: 217.2 32.6% 17.5%;
-        --input: 217.2 32.6% 17.5%;
-        --ring: 212.7 26.8% 83.9%;
-        --radius: 0.5rem;
-      }
-
-      /* 强制基础样式 */
-      body {
-        background-color: var(--bg-color) !important;
-        color: var(--text-color) !important;
-        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        margin: 0;
-        padding: 0;
-      }
-
-      /* 避免白色背景 */
-      .bg-background {
-        background-color: var(--bg-color) !important;
-      }
-
-      /* 确保文本可见 */
-      .text-foreground {
-        color: var(--text-color) !important;
-      }
-
-      .text-primary {
-        color: var(--primary-color) !important;
-      }
-
-      /* 隐藏调试信息 - 部署后可移除 */
-      .debug-banner {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background-color: #ff5722;
-        color: white;
-        text-align: center;
-        z-index: 9999;
-        font-family: sans-serif;
-        padding: 10px;
-        font-size: 14px;
-        display: none; /* 默认隐藏，需要时可设为block */
-      }
-    </style>
-
-    <!-- GitHub Pages SPA路由脚本 -->
+    <!-- GitHub Pages SPA routing script - 改进版本 -->
     <script type="text/javascript">
       // 检测当前环境并设置适当的base
       (function () {
@@ -104,9 +34,9 @@
 
         // 如果在GitHub Pages上，设置base href
         if (isGitHubPages) {
-          document.write('<base href="/' + repoName + '/" />');
+          document.querySelector("base").setAttribute("href", `/${repoName}/`);
         } else {
-          document.write('<base href="/" />');
+          document.querySelector("base").setAttribute("href", "/");
         }
 
         // 原有的SPA路由脚本
@@ -126,13 +56,10 @@
         }
       })();
     </script>
-    <script type="module" crossorigin src="/PersonalWeb/assets/index-DQhe6AYG.js"></script>
-    <link rel="stylesheet" crossorigin href="/PersonalWeb/assets/index-C4rYmkE6.css">
+    <script type="module" crossorigin src="./assets/index-DtmA4Ozr.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Bt7j8WPC.css">
   </head>
   <body>
-    <!-- 调试信息 - 部署后可移除 -->
-    <div class="debug-banner">调试模式：React已加载</div>
-
     <div id="root"></div>
   </body>
 </html>
